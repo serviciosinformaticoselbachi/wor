@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="se-pre-con"></div>
+</head>
+<script type="text/javascript" src="../../../inc/js/jquery.min.js"></script>
+<link href='widgets.css?r=kmg0cecs' media="screen" rel="stylesheet" type="text/css">
+<link href='skin/flatie.jplayer.skin.css?r=2if6dy80' media="screen" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="skin/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src='skin/flatie.jplayer.skin.js?r=ygaqorsa'></script>
+<script src="jquery.marquee.min.js" type="text/javascript"></script>
+<link href='animate.css' media="screen" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<script>
+var ts = new Date().getTime();
+$(window).on('load', function(){ $(".se-pre-con").fadeOut("slow"); });
+
+function animateCSS(element, animationName, callback) {
+if (!document.hidden) {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName)
+        node.removeEventListener('animationend', handleAnimationEnd)
+
+        if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
+}}
+
+$(document).ready(function(){
+$.post("nowplay.php",{ rsys: "scv1", port: "8046", NoCache: ts } ,function(data){ $("#nowplay").html(data);
+
+	$('.marquee').marquee({
+	//duration in milliseconds of the marquee
+	duration: 5000,
+	//gap in pixels between the tickers
+	gap: 50,
+	//time in milliseconds before the marquee will start animating
+	delayBeforeStart: 100,
+	//'left' or 'right'
+	direction: 'left',
+	//true or false - should the marquee be duplicated to show an effect of continues flow
+	duplicated: false,
+	pauseOnHover: true
+});
+
+ animateCSS('#playertrack', 'rubberBand') });
+intervalplay = setInterval(function() {
+$.post("nowplay.php",{ rsys: "scv1", port: "8046", NoCache: ts } ,function(data){ $("#nowplay").html(data);
+
+	$('.marquee').marquee({
+	//duration in milliseconds of the marquee
+	duration: 5000,
+	//gap in pixels between the tickers
+	gap: 50,
+	//time in milliseconds before the marquee will start animating
+	delayBeforeStart: 0,
+	//'left' or 'right'
+	direction: 'left',
+	//true or false - should the marquee be duplicated to show an effect of continues flow
+	duplicated: false,
+	pauseOnHover: true
+});
+
+animateCSS('#playertrack', 'rubberBand')  });
+}, 20000);
+
+$.post("art.php",{ NoCache: ts, user: 'radiouma', rsys: "scv1", port: "8046" } ,function(data){ $("#art").html(data); });
+intervalart = setInterval(function() {
+$.post("art.php",{ NoCache: ts, user: 'radiouma', rsys: "scv1", port: "8046" } ,function(data){ $("#art").html(data); });
+}, 20000);
+
+});
+
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	$('#player1').flatie({
+	media: {
+	mp3: "https://hd.elsalvadordigital.net/8046/;"
+	},
+	solution: 'html, flash',
+	supplied: "mp3",
+	preload: 'auto',
+	autoplay: true,	volume: '1.0'
+
+	});
+
+
+
+	}); // Document
+</script>
+</head>
+
+
+
+  <table>
+  <tbody>
+  <tr>
+  <td>
+  <div id="art"><img src="images/art2.gif"></div>
+  </td>
+  <td style='width: 100%; height: 100%;'>
+  <span class="weburl" style="color:white;">RADIO UMASFERRER</span>
+    <div class="nowplay"><img src="images/now5.png" id="playertrack" style="vertical-align: middle;" alt="" border="0"><span class="nowplaytext" style="color:white;"> <b>EN VIVO:</b></span> <div class='marquee' style="color:white;" id='nowplay'></div></div>
+    <div id="player1" class="jPlayer audioPlayer dark" style='border-radius: 0 10px 10px 0;'></div>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+
+
+
+
+</body>
+</html>

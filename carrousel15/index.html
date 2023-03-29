@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrousel de anuncios</title>
+<meta name="description" content="carrusel de anuncios"/>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+var current = 0;
+var imagenes = new Array();
+
+$(document).ready(function() {
+    var numImages = 6;
+    if (numImages <= 3) {
+        $('.right-arrow').css('display', 'auto');
+        $('.left-arrow').css('display', 'auto');
+    }
+	 
+    $('.left-arrow').on('click',function() {
+        if (current > 0) {
+            current = current - 1;
+        } else {
+            current = numImages - 3;
+        }
+        
+        $(".carrusel").animate({"left": -($('#product_'+current).position().left)}, 600);
+        
+        return true;
+    });
+
+    $('.left-arrow').on('hover', function() {
+        $(this).css('opacity','0.5');
+    }, function() {
+        $(this).css('opacity','1');
+    });
+
+    $('.right-arrow').on('hover', function() {
+        $(this).css('opacity','0.5');
+    }, function() {
+        $(this).css('opacity','1');
+    });
+
+    $('.right-arrow').on('click', function() {
+        if (numImages > current + 3) {
+            current = current+1;
+        } else {
+            current = 0;
+        }
+        
+        $(".carrusel").animate({"left": -($('#product_'+current).position().left)}, 900);
+        
+        return true;
+    }); 
+ });
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+</script>
+</head>
+
+<body>
+<div class="align-content-sm-stretch" id="carrusel">
+      <a href="#" class="left-arrow"><img src="images/left-arrow.png" /></a>
+      <a href="#" class="right-arrow"><img src="images/right-arrow.png" /></a>
+      <div class="carrusel">
+		    <div class="product" id="product_0">
+                        <img src="gallery/07.jpg" width="310" height="500" onClick="MM_openBrWindow('gallery/anuncio77.jpg','','width=600,height=900')" /  >
+						
+						
+                        <h5>&nbsp;</h5>
+                  </div>
+                    <div class="product" id="product_0">
+                        <img src="gallery/01.jpg" width="310" height="500" onClick="MM_openBrWindow('gallery/01.jpg','','width=600,height=900')" /  >
+						
+						
+                        <h5>&nbsp;</h5>
+                  </div>
+                    <div class="product" id="product_1">
+                        <img src="gallery/02.jpg" width="310" height="500" onClick="MM_openBrWindow('gallery/02.jpg','','width=600,height=900')" />
+                        <h5>&nbsp;</h5>
+                  </div>
+                    <div class="product" id="product_2">
+                        <img src="gallery/03.jpg" width="310" height="500" onClick="MM_openBrWindow('gallery/03.jpg','','width=600,height=900')" />
+                        <h5>&nbsp;</h5>
+                  </div>
+                    <div class="product" id="product_3">
+						<img src="gallery/anuncio22a.jpg" width="310" height="500" onClick="MM_openBrWindow('gallery/anuncio22a.jpg','','width=600,height=900')" />
+                        <h5></h5>
+                        <p></p>
+                    </div>
+                    <div class="product" id="product_4">
+                        <img src="gallery/anuncio33a.jpg" width="310" height="500" onClick="MM_openBrWindow('gallery/anuncio33a.jpg','','width=600,height=900')" />
+                        <h5></h5>
+                        <p></p>
+                    </div>
+                    <div class="product" id="product_5">
+                        <img src="gallery/01.jpg" width="310" height="500" onClick="MM_openBrWindow('gallery/01.jpg','','width=600,height=900')" />
+                        <h5></h5>
+                        <p></p>
+                    </div>
+  </div>
+</div>
+</body>
+</html>
